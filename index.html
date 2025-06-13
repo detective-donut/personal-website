@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amalverse</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
 
@@ -11,10 +12,11 @@
       margin: 0;
       font-family: 'Georgia', serif;
       background-color: #fcfbf7;
-      background-image: linear-gradient(135deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
       background-size: 40px 40px;
       color: #2c2c2c;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
     canvas#bg-network {
       position: absolute;
@@ -50,9 +52,11 @@
       color: #fff;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s;
     }
     nav a:hover {
       text-decoration: underline;
+      color: #f4cccc;
     }
     .container {
       max-width: 1000px;
@@ -66,6 +70,7 @@
     h2 {
       color: #7c1c1c;
       font-weight: 500;
+      margin-bottom: 1rem;
     }
     footer {
       background-color: #7c1c1c;
@@ -93,6 +98,7 @@
     .carousel-container {
       overflow: hidden;
       width: 100%;
+      margin-bottom: 2rem;
     }
     .carousel {
       display: flex;
@@ -106,13 +112,25 @@
       border-radius: 12px;
       object-fit: cover;
       flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .carousel img:hover {
+      transform: scale(1.05);
     }
     @keyframes scroll-carousel {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
     .notes-entry {
+      background: #fff;
+      border: 1px solid #e4caca;
+      border-radius: 10px;
+      padding: 1rem;
       margin-bottom: 1.5rem;
+      transition: box-shadow 0.3s;
+    }
+    .notes-entry:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     .notes-entry time {
       font-size: 0.9rem;
@@ -131,6 +149,70 @@
     .notes-entry a:hover p {
       text-decoration: underline;
     }
+
+    /* New immersive About Me styling */
+    .about {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(6px);
+      padding: 2.5rem;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      align-items: center;
+      animation: fadeIn 1s ease-in;
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-photo {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-image: url('your-image.jpg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .typing-line {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #7c1c1c;
+      margin-bottom: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #7c1c1c;
+      width: 0;
+      animation: typing 2s steps(22, end)
+    forwards;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 14ch }
+    }
+
+
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+
+    .about-text p {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideUp 0.8s ease forwards;
+    }
+
+    .about-text p:nth-child(2) { animation-delay: 0.4s; }
+    .about-text p:nth-child(3) { animation-delay: 0.8s; }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -144,13 +226,8 @@
     <a href="#art">Art</a>
   </nav>
   <div class="container">
-    <div class="carousel-container">
+    <div class="carousel-container" data-aos="fade-up">
       <div class="carousel">
-        <img src="WhatsApp%20Image%202025-05-22%20at%2011.44.12.jpeg" alt="Farewell Speech">
-        <img src="rollercoaster%20pic.jpeg" alt="Rollercoaster">
-        <img src="egypt%20pic.jpeg" alt="Egypt">
-        <img src="castle%20pic.jpeg" alt="Castle">
-        <img src="minion%20high%20five%20pic.jpeg" alt="Minion High Five">
         <img src="WhatsApp%20Image%202025-05-22%20at%2011.44.12.jpeg" alt="Farewell Speech">
         <img src="rollercoaster%20pic.jpeg" alt="Rollercoaster">
         <img src="egypt%20pic.jpeg" alt="Egypt">
@@ -159,15 +236,17 @@
       </div>
     </div>
 
-    <section class="about" id="about">
-      <h2>About Me</h2>
-      <p>
-        Welcome to my world! I’m Amal Zahra, a computer science undergraduate at Carnegie Mellon University, also pursuing a minor in Tech Entrepreneurship.<br><br>
-        I love math. And I love AI. And I love to analyze society. But above all, I best describe myself as a visionary and a thinker, with a lot of hope for the future.
-      </p>
+    <section class="about" id="about" data-aos="fade-up">
+      <div class="about-text">
+        <div class="typing-line">Hi, I’m Amal Zahra.</div>
+        <p>I study Computer Science at Carnegie Mellon University. And I don’t just mean study—I live it, breathe it, reimagine it.</p>
+        <p>I care about logic, yes. But also longing. About intelligence, yes. But also instinct.</p>
+        <p>This space? It’s where code meets consciousness. Welcome to the Amalverse.</p>
+      </div>
+      <div class="about-photo"></div>
     </section>
 
-    <section id="notes">
+    <section id="notes" data-aos="fade-up">
       <h2>Notes from the Amalverse</h2>
       <div class="notes-entry">
         <time>May 28, 2025</time>
@@ -183,28 +262,31 @@
       </div>
     </section>
 
-    <section class="art" id="art">
+    <section class="art" id="art" data-aos="fade-up">
       <h2>My Art & Poetry</h2>
       <p>Coming soon: Personal poems, sketches, and creative fragments from the Amalverse.</p>
     </section>
   </div>
 
   <footer>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/amal-zahra/" target="_blank" aria-label="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.28h-3v-5.5c0-1.1-.9-2-2-2s-2 .9-2 2v5.5h-3v-10h3v1.4c.58-.87 1.56-1.4 2.65-1.4 1.93 0 3.5 1.57 3.5 3.5v6.5z"/></svg>
-      </a>
-      <a href="#" aria-label="YouTube">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.6 3.2h-15.2c-2.4 0-4.4 2-4.4 4.4v8.8c0 2.4 2 4.4 4.4 4.4h15.2c2.4 0 4.4-2 4.4-4.4v-8.8c0-2.4-2-4.4-4.4-4.4zm-10.6 12v-6l6 3-6 3z"/></svg>
-      </a>
-      <a href="#" aria-label="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.8 8 11.4.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.1-1.6-1.1-1.6-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.5-1.4-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 1.8-.5 2.7-.5s1.8.2 2.7.5c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.7 5.6-5.3 5.9.3.3.5.8.5 1.6v2.3c0 .3.2.7.8.6 4.6-1.6 8-6.1 8-11.4 0-6.6-5.4-12-12-12z"/></svg>
-      </a>
-    </div>
-    <p>&copy; 2025 Amal Zahra. All rights reserved.</p>
-  </footer>
+  <div class="socials">
+    <a href="https://www.linkedin.com/in/amal-zahra/" target="_blank" aria-label="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.28h-3v-5.5c0-1.1-.9-2-2-2s-2 .9-2 2v5.5h-3v-10h3v1.4c.58-.87 1.56-1.4 2.65-1.4 1.93 0 3.5 1.57 3.5 3.5v6.5z"/></svg>
+    </a>
+    <a href="#" aria-label="YouTube">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.6 3.2h-15.2c-2.4 0-4.4 2-4.4 4.4v8.8c0 2.4 2 4.4 4.4 4.4h15.2c2.4 0 4.4-2 4.4-4.4v-8.8c0-2.4-2-4.4-4.4-4.4zm-10.6 12v-6l6 3-6 3z"/></svg>
+    </a>
+    <a href="#" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.8 8 11.4.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.1-1.6-1.1-1.6-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.5-1.4-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 1.8-.5 2.7-.5s1.8.2 2.7.5c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.7 5.6-5.3 5.9.3.3.5.8.5 1.6v2.3c0 .3.2.7.8.6 4.6-1.6 8-6.1 8-11.4 0-6.6-5.4-12-12-12z"/></svg>
+    </a>
+  </div>
+  <p>&copy; 2025 Amal Zahra. All rights reserved.</p>
+</footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    AOS.init();
+
     const canvas = document.getElementById('bg-network');
     const ctx = canvas.getContext('2d');
     let width, height;
@@ -251,10 +333,8 @@
       for (let p of points) {
         p.x += p.vx;
         p.y += p.vy;
-
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
-
         ctx.fillStyle = 'rgba(124, 28, 28, 0.5)';
         ctx.beginPath();
         ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
@@ -269,4 +349,6 @@
     window.addEventListener('resize', resize);
   </script>
 </body>
+</html>
+
 </html>

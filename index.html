@@ -16,6 +16,14 @@
       color: #2c2c2c;
       line-height: 1.6;
     }
+    canvas#bg-network {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      pointer-events: none;
+    }
     header {
       background-color: #7c1c1c;
       color: #fff;
@@ -59,49 +67,6 @@
       color: #7c1c1c;
       font-weight: 500;
     }
-    .tiles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-    .tile {
-      background: linear-gradient(135deg, #fff5f5, #fae1e1);
-      border: 1px solid #e0bdbd;
-      padding: 2rem;
-      border-radius: 16px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      font-size: 1.1rem;
-      font-weight: 500;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      position: relative;
-    }
-    .tile:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    .tile::before {
-      content: attr(data-icon);
-      font-size: 1.8rem;
-      color: #7c1c1c;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .tile:hover::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: -2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #7c1c1c;
-      color: #fff;
-      padding: 0.3rem 0.6rem;
-      border-radius: 5px;
-      font-size: 0.9rem;
-      white-space: nowrap;
-    }
     footer {
       background-color: #7c1c1c;
       color: #fff;
@@ -109,15 +74,6 @@
       padding: 2rem 1rem 1rem;
       margin-top: 2rem;
       position: relative;
-    }
-    .signature {
-      position: absolute;
-      top: -50px;
-      right: 30px;
-    }
-    .signature img {
-      width: 60px;
-      opacity: 0.85;
     }
     .socials a {
       margin: 0 10px;
@@ -134,98 +90,89 @@
     .socials a:hover svg {
       fill: #f4cccc;
     }
-  </style>
-<style>
-    .symbol-cloud {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+    .carousel-container {
       overflow: hidden;
+      width: 100%;
     }
-    .symbol {
-      position: absolute;
-      font-size: 1.2rem;
-      color: rgba(124, 28, 28, 0.1);
-      animation: float 20s linear infinite;
+    .carousel {
+      display: flex;
+      width: fit-content;
+      animation: scroll-carousel 30s linear infinite;
+      gap: 1rem;
     }
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) translateX(0);
-        opacity: 0;
-      }
-      25% {
-        opacity: 0.2;
-      }
-      50% {
-        opacity: 0.3;
-      }
-      75% {
-        opacity: 0.2;
-      }
-      100% {
-        transform: translateY(-100vh) translateX(20px);
-        opacity: 0;
-      }
+    .carousel img {
+      width: 300px;
+      height: 200px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
     }
-</style>
-<style>
-    canvas#bg-network {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  pointer-events: none;
-}
-</style>
+    @keyframes scroll-carousel {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .notes-entry {
+      margin-bottom: 1.5rem;
+    }
+    .notes-entry time {
+      font-size: 0.9rem;
+      color: #7c1c1c;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .notes-entry p {
+      margin: 0;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
   <canvas id="bg-network"></canvas>
-  <div class="symbol-cloud">
-    <div class="symbol" style="left: 10%; animation-delay: 0s;">∑</div>
-    <div class="symbol" style="left: 20%; animation-delay: 3s;">ψ</div>
-    <div class="symbol" style="left: 35%; animation-delay: 6s;">λ</div>
-    <div class="symbol" style="left: 50%; animation-delay: 1.5s;">⌘</div>
-    <div class="symbol" style="left: 65%; animation-delay: 4.5s;">¶</div>
-    <div class="symbol" style="left: 80%; animation-delay: 2.5s;">∞</div>
-    <div class="symbol" style="left: 90%; animation-delay: 5.5s;">∃</div>
-  </div>
   <header>
     <h1>Amal<span>verse</span></h1>
   </header>
   <nav>
     <a href="#about">About</a>
-    <a href="#interests">Blog</a>
+    <a href="#notes">Notes</a>
     <a href="#art">Art</a>
   </nav>
   <div class="container">
+    <div class="carousel-container">
+      <div class="carousel">
+        <img src="WhatsApp%20Image%202025-05-22%20at%2011.44.12.jpeg" alt="Farewell Speech">
+        <img src="rollercoaster%20pic.jpeg" alt="Rollercoaster">
+        <img src="egypt%20pic.jpeg" alt="Egypt">
+        <img src="castle%20pic.jpeg" alt="Castle">
+        <img src="minion%20high%20five%20pic.jpeg" alt="Minion High Five">
+        <img src="WhatsApp%20Image%202025-05-22%20at%2011.44.12.jpeg" alt="Farewell Speech">
+        <img src="rollercoaster%20pic.jpeg" alt="Rollercoaster">
+        <img src="egypt%20pic.jpeg" alt="Egypt">
+        <img src="castle%20pic.jpeg" alt="Castle">
+        <img src="minion%20high%20five%20pic.jpeg" alt="Minion High Five">
+      </div>
+    </div>
+
     <section class="about" id="about">
       <h2>About Me</h2>
       <p>
-        I'm Amal Zahra — a seeker of truth, beauty, and meaning through mathematics, philosophy,
-        literature, computer science, and art. My journey is one of curiosity and contradiction:
-        from poetic metaphors to logical proofs, from abstract art to algorithms.
+        Welcome to my world! I’m Amal Zahra, a computer science undergraduate at Carnegie Mellon University, also pursuing a minor in Tech Entrepreneurship.<br><br>
+        I love math. And I love AI. And I love to analyze society. But above all, I best describe myself as a visionary and a thinker, with a lot of hope for the future.
       </p>
     </section>
 
-    <section class="interests" id="interests">
-      <h2>Blog</h2>
-      <div class="tiles">
-        <div class="tile" data-icon="∑" data-tooltip="Musings on the infinite. Reflections on abstract beauty." onclick="window.location.href='blogs/mathematics.html'">Mathematics</div>
-        <div class="tile" data-icon="Ψ" data-tooltip="Dissections of logic, ethics, and meaning." onclick="window.location.href='blogs/philosophy.html'">Philosophy</div>
-        <div class="tile" data-icon="¶" data-tooltip="Language as soul. Literature as mirror." onclick="window.location.href='blogs/literature.html'">Literature</div>
-        <div class="tile" data-icon="◧" data-tooltip="Sketches, silence, and self-expression." onclick="window.location.href='blogs/art.html'">Art</div>
-        <div class="tile" data-icon="" data-tooltip="Humans, systems, and shared illusions." onclick="window.location.href='blogs/sociology.html'">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height: 2rem; width: 2rem; fill: #7c1c1c; margin: 0 auto 0.7rem; display: block;"><path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Sociology</div>
-        <div class="tile" data-icon="" data-tooltip="Code meets thought. Machines meet meaning." onclick="window.location.href='blogs/cs-ai.html'">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height: 2rem; width: 2rem; fill: #7c1c1c; margin: 0 auto 0.7rem; display: block;">
-    <path d="M19.43 12.98c.04-.32.07-.66.07-1s-.03-.68-.07-1l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46a.495.495 0 0 0-.61-.22l-2.49 1a7.025 7.025 0 0 0-1.73-1L14.5 2.5a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 0-.5.5l-.38 2.51c-.63.26-1.21.6-1.73 1l-2.49-1a.495.495 0 0 0-.61.22l-2 3.46a.495.495 0 0 0 .12.64l2.11 1.65c-.04.32-.07.66-.07 1s.03.68.07 1l-2.11 1.65a.495.495 0 0 0-.12.64l2 3.46c.13.23.4.3.61.22l2.49-1c.52.4 1.1.74 1.73 1l.38 2.51c.04.26.25.45.5.45h4c.25 0 .46-.19.5-.45l.38-2.51c.63-.26 1.21-.6 1.73-1l2.49 1c.21.08.48 0 .61-.22l2-3.46a.495.495 0 0 0-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5S10.07 8.5 12 8.5s3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
-  </svg>
-          Computer Science & AI
-        </div>
+    <section id="notes">
+      <h2>Notes from the Amalverse</h2>
+      <div class="notes-entry">
+        <time>May 28, 2025</time>
+        <p>"I think most people want to be extraordinary. I just want to be real and useful. Sometimes those overlap."</p>
+      </div>
+      <div class="notes-entry">
+        <time>May 26, 2025</time>
+        <p>"Maybe the truth isn’t a place, but a process. A rhythm you learn to dance to."</p>
+      </div>
+      <div class="notes-entry">
+        <time>May 24, 2025</time>
+        <p>"I like things that are messy and honest and unfinished. Maybe that’s what I am too."</p>
       </div>
     </section>
 
@@ -234,8 +181,8 @@
       <p>Coming soon: Personal poems, sketches, and creative fragments from the Amalverse.</p>
     </section>
   </div>
+
   <footer>
-    
     <div class="socials">
       <a href="https://www.linkedin.com/in/amal-zahra/" target="_blank" aria-label="LinkedIn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.28h-3v-5.5c0-1.1-.9-2-2-2s-2 .9-2 2v5.5h-3v-10h3v1.4c.58-.87 1.56-1.4 2.65-1.4 1.93 0 3.5 1.57 3.5 3.5v6.5z"/></svg>
@@ -249,69 +196,70 @@
     </div>
     <p>&copy; 2025 Amal Zahra. All rights reserved.</p>
   </footer>
-<script>
-const canvas = document.getElementById('bg-network');
-const ctx = canvas.getContext('2d');
-let width, height;
-let points = [];
 
-function resize() {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = document.documentElement.scrollHeight;
-  generatePoints();
-}
+  <script>
+    const canvas = document.getElementById('bg-network');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let points = [];
 
-function generatePoints() {
-  points = [];
-  const density = 200;
-  for (let i = 0; i < density; i++) {
-    points.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3
-    });
-  }
-}
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = document.documentElement.scrollHeight;
+      generatePoints();
+    }
 
-function connectPoints() {
-  for (let i = 0; i < points.length; i++) {
-    for (let j = i + 1; j < points.length; j++) {
-      const dx = points[i].x - points[j].x;
-      const dy = points[i].y - points[j].y;
-      const dist = dx * dx + dy * dy;
-      if (dist < 4000) {
-        ctx.strokeStyle = 'rgba(124, 28, 28, 0.1)';
-        ctx.beginPath();
-        ctx.moveTo(points[i].x, points[i].y);
-        ctx.lineTo(points[j].x, points[j].y);
-        ctx.stroke();
+    function generatePoints() {
+      points = [];
+      const density = 200;
+      for (let i = 0; i < density; i++) {
+        points.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3
+        });
       }
     }
-  }
-}
 
-function animate() {
-  ctx.clearRect(0, 0, width, height);
-  for (let p of points) {
-    p.x += p.vx;
-    p.y += p.vy;
+    function connectPoints() {
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          const dx = points[i].x - points[j].x;
+          const dy = points[i].y - points[j].y;
+          const dist = dx * dx + dy * dy;
+          if (dist < 4000) {
+            ctx.strokeStyle = 'rgba(124, 28, 28, 0.1)';
+            ctx.beginPath();
+            ctx.moveTo(points[i].x, points[i].y);
+            ctx.lineTo(points[j].x, points[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
 
-    if (p.x < 0 || p.x > width) p.vx *= -1;
-    if (p.y < 0 || p.y > height) p.vy *= -1;
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let p of points) {
+        p.x += p.vx;
+        p.y += p.vy;
 
-    ctx.fillStyle = 'rgba(124, 28, 28, 0.5)';
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  connectPoints();
-  requestAnimationFrame(animate);
-}
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
 
-resize();
-animate();
-window.addEventListener('resize', resize);
-</script>
+        ctx.fillStyle = 'rgba(124, 28, 28, 0.5)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      connectPoints();
+      requestAnimationFrame(animate);
+    }
+
+    resize();
+    animate();
+    window.addEventListener('resize', resize);
+  </script>
 </body>
 </html>

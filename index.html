@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amalverse</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #fcfbf7;
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent);
+      background-size: 40px 40px;
+      color: #2c2c2c;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #7c1c1c;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+    }
+    header h1 span {
+      color: #f8cccc;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #a33b3b;
+      padding: 1rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    section {
+      padding: 2rem 0;
+      border-bottom: 1px dashed #e4caca;
+    }
+    h2 {
+      color: #7c1c1c;
+      font-weight: 500;
+    }
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .tile {
+      background: linear-gradient(135deg, #fff5f5, #fae1e1);
+      border: 1px solid #e0bdbd;
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 1.1rem;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .tile:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .tile::before {
+      content: attr(data-icon);
+      font-size: 1.8rem;
+      color: #7c1c1c;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .tile:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #7c1c1c;
+      color: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    footer {
+      background-color: #7c1c1c;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+    .signature {
+      position: absolute;
+      top: -50px;
+      right: 30px;
+    }
+    .signature img {
+      width: 60px;
+      opacity: 0.85;
+    }
+    .socials a {
+      margin: 0 10px;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .socials svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+      transition: fill 0.3s;
+    }
+    .socials a:hover svg {
+      fill: #f4cccc;
+    }
+  </style>
+<style>
+    .symbol-cloud {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .symbol {
+      position: absolute;
+      font-size: 1.2rem;
+      color: rgba(124, 28, 28, 0.1);
+      animation: float 20s linear infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      25% {
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      75% {
+        opacity: 0.2;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(20px);
+        opacity: 0;
+      }
+    }
+</style>
+<style>
+    canvas#bg-network {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+  <canvas id="bg-network"></canvas>
+  <div class="symbol-cloud">
+    <div class="symbol" style="left: 10%; animation-delay: 0s;">∑</div>
+    <div class="symbol" style="left: 20%; animation-delay: 3s;">ψ</div>
+    <div class="symbol" style="left: 35%; animation-delay: 6s;">λ</div>
+    <div class="symbol" style="left: 50%; animation-delay: 1.5s;">⌘</div>
+    <div class="symbol" style="left: 65%; animation-delay: 4.5s;">¶</div>
+    <div class="symbol" style="left: 80%; animation-delay: 2.5s;">∞</div>
+    <div class="symbol" style="left: 90%; animation-delay: 5.5s;">∃</div>
+  </div>
+  <header>
+    <h1>Amal<span>verse</span></h1>
+  </header>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#interests">Blog</a>
+    <a href="#art">Art</a>
+  </nav>
+  <div class="container">
+    <section class="about" id="about">
+      <h2>About Me</h2>
+      <p>
+        I'm Amal Zahra — a seeker of truth, beauty, and meaning through mathematics, philosophy,
+        literature, computer science, and art. My journey is one of curiosity and contradiction:
+        from poetic metaphors to logical proofs, from abstract art to algorithms.
+      </p>
+    </section>
+
+    <section class="interests" id="interests">
+      <h2>Blog</h2>
+      <div class="tiles">
+        <div class="tile" data-icon="∑" data-tooltip="Musings on the infinite. Reflections on abstract beauty." onclick="window.location.href='blogs/mathematics.html'">Mathematics</div>
+        <div class="tile" data-icon="Ψ" data-tooltip="Dissections of logic, ethics, and meaning." onclick="window.location.href='blogs/philosophy.html'">Philosophy</div>
+        <div class="tile" data-icon="¶" data-tooltip="Language as soul. Literature as mirror." onclick="window.location.href='blogs/literature.html'">Literature</div>
+        <div class="tile" data-icon="◧" data-tooltip="Sketches, silence, and self-expression." onclick="window.location.href='blogs/art.html'">Art</div>
+        <div class="tile" data-icon="" data-tooltip="Humans, systems, and shared illusions." onclick="window.location.href='blogs/sociology.html'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height: 2rem; width: 2rem; fill: #7c1c1c; margin: 0 auto 0.7rem; display: block;"><path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Sociology</div>
+        <div class="tile" data-icon="" data-tooltip="Code meets thought. Machines meet meaning." onclick="window.location.href='blogs/cs-ai.html'">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height: 2rem; width: 2rem; fill: #7c1c1c; margin: 0 auto 0.7rem; display: block;">
+    <path d="M19.43 12.98c.04-.32.07-.66.07-1s-.03-.68-.07-1l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46a.495.495 0 0 0-.61-.22l-2.49 1a7.025 7.025 0 0 0-1.73-1L14.5 2.5a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 0-.5.5l-.38 2.51c-.63.26-1.21.6-1.73 1l-2.49-1a.495.495 0 0 0-.61.22l-2 3.46a.495.495 0 0 0 .12.64l2.11 1.65c-.04.32-.07.66-.07 1s.03.68.07 1l-2.11 1.65a.495.495 0 0 0-.12.64l2 3.46c.13.23.4.3.61.22l2.49-1c.52.4 1.1.74 1.73 1l.38 2.51c.04.26.25.45.5.45h4c.25 0 .46-.19.5-.45l.38-2.51c.63-.26 1.21-.6 1.73-1l2.49 1c.21.08.48 0 .61-.22l2-3.46a.495.495 0 0 0-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5S10.07 8.5 12 8.5s3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+  </svg>
+          Computer Science & AI
+        </div>
+      </div>
+    </section>
+
+    <section class="art" id="art">
+      <h2>My Art & Poetry</h2>
+      <p>Coming soon: Personal poems, sketches, and creative fragments from the Amalverse.</p>
+    </section>
+  </div>
+  <footer>
+    
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/amal-zahra/" target="_blank" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.28h-3v-5.5c0-1.1-.9-2-2-2s-2 .9-2 2v5.5h-3v-10h3v1.4c.58-.87 1.56-1.4 2.65-1.4 1.93 0 3.5 1.57 3.5 3.5v6.5z"/></svg>
+      </a>
+      <a href="#" aria-label="YouTube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.6 3.2h-15.2c-2.4 0-4.4 2-4.4 4.4v8.8c0 2.4 2 4.4 4.4 4.4h15.2c2.4 0 4.4-2 4.4-4.4v-8.8c0-2.4-2-4.4-4.4-4.4zm-10.6 12v-6l6 3-6 3z"/></svg>
+      </a>
+      <a href="#" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.8 8 11.4.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.1-1.6-1.1-1.6-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.5-1.4-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 1.8-.5 2.7-.5s1.8.2 2.7.5c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.7 5.6-5.3 5.9.3.3.5.8.5 1.6v2.3c0 .3.2.7.8.6 4.6-1.6 8-6.1 8-11.4 0-6.6-5.4-12-12-12z"/></svg>
+      </a>
+    </div>
+    <p>&copy; 2025 Amal Zahra. All rights reserved.</p>
+  </footer>
+<script>
+const canvas = document.getElementById('bg-network');
+const ctx = canvas.getContext('2d');
+let width, height;
+let points = [];
+
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = document.documentElement.scrollHeight;
+  generatePoints();
+}
+
+function generatePoints() {
+  points = [];
+  const density = 200;
+  for (let i = 0; i < density; i++) {
+    points.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3
+    });
+  }
+}
+
+function connectPoints() {
+  for (let i = 0; i < points.length; i++) {
+    for (let j = i + 1; j < points.length; j++) {
+      const dx = points[i].x - points[j].x;
+      const dy = points[i].y - points[j].y;
+      const dist = dx * dx + dy * dy;
+      if (dist < 4000) {
+        ctx.strokeStyle = 'rgba(124, 28, 28, 0.1)';
+        ctx.beginPath();
+        ctx.moveTo(points[i].x, points[i].y);
+        ctx.lineTo(points[j].x, points[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  for (let p of points) {
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if (p.x < 0 || p.x > width) p.vx *= -1;
+    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+    ctx.fillStyle = 'rgba(124, 28, 28, 0.5)';
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  connectPoints();
+  requestAnimationFrame(animate);
+}
+
+resize();
+animate();
+window.addEventListener('resize', resize);
+</script>
+</body>
+</html>

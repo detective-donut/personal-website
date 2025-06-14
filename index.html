@@ -243,9 +243,10 @@
   </style>
 </head>
 <body>
-  <audio id="bg-music" controls autoplay loop>
+  <audio id="bg-music" autoplay loop>
     <source src="background-music.mp3" type="audio/mpeg">
   </audio>
+
   <canvas id="bg-network"></canvas>
   <header>
     <h1>Amal<span>verse</span></h1>
@@ -412,13 +413,32 @@
     const music = document.getElementById('bg-music');
     const musicBtn = document.getElementById('music-toggle');
 
+    document.addEventListener('DOMContentLoaded', () => {
+      const unlock = () => {
+        music.play().catch(() => {});
+        document.removeEventListener('click', unlock);
+      };
+      document.addEventListener('click', unlock);
+    });
+
+
     let isMuted = false;
 
+    music.volume = 0.8; // optional, adjust as needed
+
     musicBtn.addEventListener('click', () => {
-      isMuted = !isMuted;
-      music.muted = isMuted;
-      musicBtn.textContent = isMuted ? '🔇' : '🔊';
+      if (music.paused) {
+        music.play().then(() => {
+          musicBtn.textContent = '🔊';
+        }).catch(() => {
+          console.log("Autoplay blocked or failed");
+        });
+      } else {
+        music.pause();
+        musicBtn.textContent = '🔇';
+      }
     });
+
     
   </script>
 </body>

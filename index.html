@@ -152,7 +152,7 @@
     .about {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(6px);
-      padding: 2.5rem;
+      padding: 1.5rem;
       border-radius: 12px;
       display: flex;
       flex-direction: row;
@@ -252,6 +252,7 @@
     <a href="#notes">Notes</a>
     <a href="#art">Art</a>
     <button id="theme-toggle" style="margin-left: auto; background: none; border: 1px solid white; color: white; padding: 0.2rem 0.5rem; border-radius: 8px; cursor: pointer;">🌙</button>
+    <button id="music-toggle" style="background: none; border: 1px solid white; color: white; padding: 0.2rem 0.5rem; font-size: 0.8rem; border-radius: 6px; cursor: pointer;">🔊</button>
   </nav>
   <div class="container">
     <div class="carousel-container" data-aos="fade-up">
@@ -405,6 +406,21 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-toggle');
+
+    let isMuted = false;
+
+    musicBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      music.muted = isMuted;
+      musicBtn.textContent = isMuted ? '🔇' : '🔊';
+    });
+    
   </script>
 </body>
+<audio id="bg-music" autoplay loop>
+  <source src="background-music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 </html>

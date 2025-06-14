@@ -313,6 +313,19 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    function isDarkMode() {
+      return document.body.classList.contains('dark-mode');
+    }
+    
+    function getDotColor() {
+      return isDarkMode() ? 'rgba(244, 204, 204, 0.6)' : 'rgba(124, 28, 28, 0.5)';
+    }
+    
+    function getLineColor() {
+      return isDarkMode() ? 'rgba(244, 204, 204, 0.2)' : 'rgba(124, 28, 28, 0.1)';
+    }
+    
+    
     AOS.init();
 
     const canvas = document.getElementById('bg-network');
@@ -328,7 +341,7 @@
 
     function generatePoints() {
       points = [];
-      const density = 200;
+      const density = 500;
       for (let i = 0; i < density; i++) {
         points.push({
           x: Math.random() * width,
@@ -346,7 +359,7 @@
           const dy = points[i].y - points[j].y;
           const dist = dx * dx + dy * dy;
           if (dist < 4000) {
-            ctx.strokeStyle = 'rgba(124, 28, 28, 0.1)';
+            ctx.strokeStyle = getLineColor();
             ctx.beginPath();
             ctx.moveTo(points[i].x, points[i].y);
             ctx.lineTo(points[j].x, points[j].y);
@@ -363,7 +376,7 @@
         p.y += p.vy;
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
-        ctx.fillStyle = 'rgba(124, 28, 28, 0.5)';
+        ctx.fillStyle = getDotColor();
         ctx.beginPath();
         ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
         ctx.fill();

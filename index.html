@@ -12,8 +12,6 @@
       margin: 0;
       font-family: 'Georgia', serif;
       background-color: #fcfbf7;
-      background-image: linear-gradient(135deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
-      background-size: 40px 40px;
       color: #2c2c2c;
       line-height: 1.6;
       scroll-behavior: smooth;
@@ -213,6 +211,35 @@
         transform: translateY(0);
       }
     }
+    
+    /* DARK MODE STYLES */
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+    }
+    body.dark-mode .notes-entry {
+      background: #2c2c2c;
+      border-color: #555;
+    }
+    body.dark-mode .about {
+      background: rgba(40, 40, 40, 0.7);
+    }
+    body.dark-mode h2 {
+      color: #f4cccc;
+    }
+    body.dark-mode .typing-line {
+      color: #f4cccc;
+      border-color: #f4cccc;
+    }
+    body.dark-mode .notes-entry time {
+      color: #f4cccc;
+    }
+    body.dark-mode .socials svg {
+      fill: #e0e0e0;
+    }
+    body.dark-mode .socials a:hover svg {
+      fill: #bbbbbb;
+    }
   </style>
 </head>
 <body>
@@ -224,6 +251,7 @@
     <a href="#about">About</a>
     <a href="#notes">Notes</a>
     <a href="#art">Art</a>
+    <button id="theme-toggle" style="margin-left: auto; background: none; border: 2px solid white; color: white; padding: 0.4rem 1rem; border-radius: 8px; cursor: pointer;">🌙</button>
   </nav>
   <div class="container">
     <div class="carousel-container" data-aos="fade-up">
@@ -347,6 +375,23 @@
     resize();
     animate();
     window.addEventListener('resize', resize);
+
+    const toggleBtn = document.getElementById('theme-toggle');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.body.classList.add('dark-mode');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
   </script>
 </body>
 </html>

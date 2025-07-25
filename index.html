@@ -253,11 +253,17 @@
     }
 
     .about-text a {
-      color: #7c1c1c; /* deep crimson, matches your palette */
-      text-decoration: underline; /* or 'none' if you prefer clean */
+      color: #7c1c1c;
+      text-decoration: underline;
     }
     .about-text a:hover {
-      color: #a33b3b; /* lighter on hover */
+      color: #a33b3b;
+    }
+    body.dark-mode .about-text a {
+      color: #f4cccc;
+    }
+    body.dark-mode .about-text a:hover {
+      color: #ffdddd;
     }
 
   </style>

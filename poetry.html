@@ -130,34 +130,53 @@
       100% { transform: translateX(-50%); }
     }
     
-    .notes-entry {
-      background: #fff;
-      border: 1px solid #e4caca;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      transition: box-shadow 0.3s;
+    .poetry-section {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 1rem;
     }
-    .notes-entry:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    
+    .section-title {
+      font-size: 2rem;
+      font-family: 'Georgia', serif;
+      border-bottom: 2px solid #7c1f1f;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      color: #f2f2f2;
     }
-    .notes-entry time {
-      font-size: 0.9rem;
-      color: #7c1c1c;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    .notes-entry a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .notes-entry p {
-      margin: 0;
+    
+    .section-subtitle {
+      font-size: 1rem;
+      color: #ccc;
       font-style: italic;
+      margin-bottom: 2rem;
     }
-    .notes-entry a:hover p {
-      text-decoration: underline;
+    
+    .poem-entry {
+      background-color: rgba(255, 255, 255, 0.03);
+      padding: 1.5rem;
+      border-left: 3px solid #aa2a2a;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease;
     }
+    
+    .poem-entry:hover {
+      transform: translateY(-4px);
+    }
+    
+    .poem-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #f6f6f6;
+    }
+    
+    .poem-text {
+      line-height: 1.6;
+      color: #ddd;
+      white-space: pre-wrap;
+    }
+
 
     /* New immersive About Me styling */
     .about {
@@ -288,24 +307,28 @@
   </nav>
 
   <main>
-    <section class="originals" id="originals" data-aos="fade-up">
-      <h2>Originals</h2>
-      <p class="section-description">Poems I've written — fragments of thought, form, and feeling.</p>
-      <!-- Individual poem cards will go here -->
-      <article class="poem">
-        <h3>Title of Poem</h3>
-        <p>[Excerpt or full poem text here]</p>
-      </article>
+    <section class="poetry-section">
+      <h2 class="section-title">Originals</h2>
+      <p class="section-subtitle">Fragments of thought, form, and feeling — my own poems.</p>
+    
+      <div class="poem-entry">
+        <h3 class="poem-title">Title of Poem</h3>
+        <p class="poem-text">[Excerpt or full poem text here]</p>
+      </div>
+    
+      <!-- Repeat for each poem -->
     </section>
-
-    <section class="marginalia" id="marginalia" data-aos="fade-up">
-      <h2>Marginalia</h2>
-      <p class="section-description">Commentary on poems I’ve read — notes, insights, and intellectual meanderings.</p>
-      <!-- Commentary entries go here -->
-      <article class="commentary">
-        <h3>Poem/Poet Name</h3>
-        <p>[Your critical response or reflection goes here]</p>
-      </article>
+    
+    <section class="poetry-section">
+      <h2 class="section-title">Marginalia</h2>
+      <p class="section-subtitle">Notes, insights, and intellectual meanderings on poems I've read.</p>
+    
+      <div class="poem-entry">
+        <h3 class="poem-title">Poem / Poet Name</h3>
+        <p class="poem-text">[Your critical response or reflection goes here]</p>
+      </div>
+    
+      <!-- Repeat for each marginalia -->
     </section>
   </main>
 

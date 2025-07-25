@@ -1,12 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Poetry | Amal Zahra</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amalverse</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #fcfbf7;
+      color: #2c2c2c;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    canvas#bg-network {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      pointer-events: none;
+    }
+    header {
+      background-color: #7c1c1c;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+    }
+    header h1 span {
+      color: #f8cccc;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #a33b3b;
+      padding: 1rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      text-decoration: underline;
+      color: #f4cccc;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    section {
+      padding: 2rem 0;
+      border-bottom: 1px dashed #e4caca;
+    }
+    h2 {
+      color: #7c1c1c;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    footer {
+      background-color: #7c1c1c;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+    .socials a {
+      margin: 0 10px;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .socials svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+      transition: fill 0.3s;
+    }
+    .socials a:hover svg {
+      fill: #f4cccc;
+    }
+    .carousel-container {
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+    
+    .carousel {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .carousel-track {
+      display: flex;
+      width: max-content;
+      gap: 1rem;
+      animation: scroll-carousel 30s linear infinite;
+    }
+    
+    .carousel-track img {
+      width: 300px;
+      height: 200px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    
+    .carousel-track img:hover {
+      transform: scale(1.05);
+    }
+    
+    @keyframes scroll-carousel {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 14ch }
+    }
+
+
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+    .about-text p:nth-child(3) { animation-delay: 0.8s; }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* DARK MODE STYLES */
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+    }
+    body.dark-mode .notes-entry {
+      background: #2c2c2c;
+      border-color: #555;
+    }
+    body.dark-mode .about {
+      background: rgba(40, 40, 40, 0.7);
+    }
+    body.dark-mode h2 {
+      color: #f4cccc;
+    }
+    body.dark-mode .typing-line {
+      color: #f4cccc;
+      border-color: #f4cccc;
+    }
+    body.dark-mode .notes-entry time {
+      color: #f4cccc;
+    }
+    body.dark-mode .socials svg {
+      fill: #e0e0e0;
+    }
+    body.dark-mode .socials a:hover svg {
+      fill: #bbbbbb;
+    }
+
+    .about-text a {
+      color: #7c1c1c;
+      text-decoration: underline;
+    }
+    .about-text a:hover {
+      color: #a33b3b;
+    }
+    body.dark-mode .about-text a {
+      color: #f4cccc;
+    }
+    body.dark-mode .about-text a:hover {
+      color: #ffdddd;
+    }
+
+  </style>
+  <link rel="icon" type="image/svg+xml" href="svgviewer-output (3).svg">
 </head>
+
+  
 <body>
   <nav class="site-nav">
     <ul>

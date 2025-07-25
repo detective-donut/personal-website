@@ -129,6 +129,72 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+    
+    .notes-entry {
+      background: #fff;
+      border: 1px solid #e4caca;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.3s;
+    }
+    .notes-entry:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .notes-entry time {
+      font-size: 0.9rem;
+      color: #7c1c1c;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .notes-entry a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .notes-entry p {
+      margin: 0;
+      font-style: italic;
+    }
+    .notes-entry a:hover p {
+      text-decoration: underline;
+    }
+
+    /* New immersive About Me styling */
+    .about {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(6px);
+      padding: 1.5rem;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      align-items: center;
+      animation: fadeIn 1s ease-in;
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-photo {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-image: url('WhatsApp Image 2025-07-25 at 07.36.34.jpeg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .typing-line {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #7c1c1c;
+      margin-bottom: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #7c1c1c;
+      width: 0;
+      animation: typing 2s steps(22, end)
+    forwards;
+    }
 
     @keyframes typing {
       from { width: 0 }
@@ -140,6 +206,14 @@
       from { opacity: 0 }
       to { opacity: 1 }
     }
+
+    .about-text p {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideUp 0.8s ease forwards;
+    }
+
+    .about-text p:nth-child(2) { animation-delay: 0.4s; }
     .about-text p:nth-child(3) { animation-delay: 0.8s; }
 
     @keyframes slideUp {
@@ -195,59 +269,167 @@
   </style>
   <link rel="icon" type="image/svg+xml" href="svgviewer-output (3).svg">
 </head>
-
-  
 <body>
-  <nav class="site-nav">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="reflections.html">Reflections</a></li>
-      <li><a href="perspectives.html">Perspectives</a></li>
-      <li><a href="poetry.html" class="active">Poetry</a></li>
-    </ul>
+  <audio id="bg-music" autoplay loop>
+    <source src="background-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <canvas id="bg-network"></canvas>
+  <header>
+    <h1>Amal<span>verse</span></h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="reflections.html">Reflections</a>
+    <a href="perspectives.html">Perspectives</a>
+    <a href="poetry">Poetry</a>
+    <button id="theme-toggle" style="margin-left: auto; background: none; border: 1px solid white; color: white; padding: 0.2rem 0.5rem; border-radius: 8px; cursor: pointer;">🌙</button>
+    <button id="music-toggle" style="background: none; border: 1px solid white; color: white; padding: 0.2rem 0.5rem; font-size: 0.8rem; border-radius: 6px; cursor: pointer;">🔊</button>
   </nav>
-
-  <section class="poetry-header" data-aos="fade-up">
-    <h1>Poetry</h1>
-    <p>I write. I read. I think about words. This is where all that collides.</p>
-  </section>
-
-  <section class="original-poems" data-aos="fade-up">
-    <h2>My Poems</h2>
-
-    <article class="poem">
-      <h3>Unreal</h3>
-      <p class="poem-text">
-        It felt unreal.<br>
-        The lights, the letters, the red-inked seal.<br>
-        Twenty thousand steps and one deep breath,<br>
-        All blurred into that singular feel.<br>
-      </p>
-      <p class="poem-note">Written the day after walking 20,202 steps. The day it started to feel real.</p>
-    </article>
-
-    <!-- Add more poems similarly -->
-
-  </section>
-
-  <section class="poetry-readings" data-aos="fade-up">
-    <h2>Poems I Read</h2>
-    <p>Thoughts on pieces I’ve been haunted by.</p>
-
-    <div class="poem-review">
-      <h3>"The Love Song of J. Alfred Prufrock" – T.S. Eliot</h3>
-      <p class="commentary">
-        Prufrock’s paralysis feels contemporary — the fear of speaking, of acting, of being misunderstood. What strikes me is how Eliot layers anxiety with aesthetics. The poem doesn’t scream. It simmers.
-      </p>
-    </div>
-
-    <!-- Add more poem reviews similarly -->
-
-  </section>
+  <div class="container">
+   
+    
+  </div>
 
   <footer>
-    <p>&copy; 2025 Amal Zahra. All rights reserved.</p>
-  </footer>
+  <div class="socials">
+    <a href="https://www.linkedin.com/in/amal-zahra/" target="_blank" aria-label="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.28h-3v-5.5c0-1.1-.9-2-2-2s-2 .9-2 2v5.5h-3v-10h3v1.4c.58-.87 1.56-1.4 2.65-1.4 1.93 0 3.5 1.57 3.5 3.5v6.5z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@4malzahraa" target="_blank" aria-label="YouTube">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.6 3.2h-15.2c-2.4 0-4.4 2-4.4 4.4v8.8c0 2.4 2 4.4 4.4 4.4h15.2c2.4 0 4.4-2 4.4-4.4v-8.8c0-2.4-2-4.4-4.4-4.4zm-10.6 12v-6l6 3-6 3z"/></svg>
+    </a>
+    <a href="https://github.com/4malz" target="_blank" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.8 8 11.4.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.1-1.6-1.1-1.6-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.5-1.4-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 1.8-.5 2.7-.5s1.8.2 2.7.5c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.7 5.6-5.3 5.9.3.3.5.8.5 1.6v2.3c0 .3.2.7.8.6 4.6-1.6 8-6.1 8-11.4 0-6.6-5.4-12-12-12z"/></svg>
+    </a>
+  </div>
+  <p>&copy; 2025 Amal Zahra. All rights reserved.</p>
+</footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    function isDarkMode() {
+      return document.body.classList.contains('dark-mode');
+    }
+    
+    function getDotColor() {
+      return isDarkMode() ? 'rgba(244, 204, 204, 0.6)' : 'rgba(124, 28, 28, 0.5)';
+    }
+    
+    function getLineColor() {
+      return isDarkMode() ? 'rgba(244, 204, 204, 0.2)' : 'rgba(124, 28, 28, 0.1)';
+    }
+    
+    
+    AOS.init();
+
+    const canvas = document.getElementById('bg-network');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let points = [];
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = document.documentElement.scrollHeight;
+      generatePoints();
+    }
+
+    function generatePoints() {
+      points = [];
+      const density = 500;
+      for (let i = 0; i < density; i++) {
+        points.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3
+        });
+      }
+    }
+
+    function connectPoints() {
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          const dx = points[i].x - points[j].x;
+          const dy = points[i].y - points[j].y;
+          const dist = dx * dx + dy * dy;
+          if (dist < 4000) {
+            ctx.strokeStyle = getLineColor();
+            ctx.beginPath();
+            ctx.moveTo(points[i].x, points[i].y);
+            ctx.lineTo(points[j].x, points[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let p of points) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+        ctx.fillStyle = getDotColor();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      connectPoints();
+      requestAnimationFrame(animate);
+    }
+
+    resize();
+    animate();
+    window.addEventListener('resize', resize);
+
+    const toggleBtn = document.getElementById('theme-toggle');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.body.classList.add('dark-mode');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-toggle');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const unlock = () => {
+        music.play().catch(() => {});
+        document.removeEventListener('click', unlock);
+      };
+      document.addEventListener('click', unlock);
+    });
+
+
+    let isMuted = false;
+
+    music.volume = 0.8; // optional, adjust as needed
+
+    musicBtn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play().then(() => {
+          musicBtn.textContent = '🔊';
+        }).catch(() => {
+          console.log("Autoplay blocked or failed");
+        });
+      } else {
+        music.pause();
+        musicBtn.textContent = '🔇';
+      }
+    });
+
+    
+  </script>
 </body>
 </html>

@@ -93,42 +93,6 @@
     .socials a:hover svg {
       fill: #f4cccc;
     }
-    .carousel-container {
-      overflow: hidden;
-      width: 100%;
-      margin-bottom: 2rem;
-    }
-    
-    .carousel {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .carousel-track {
-      display: flex;
-      width: max-content;
-      gap: 1rem;
-      animation: scroll-carousel 30s linear infinite;
-    }
-    
-    .carousel-track img {
-      width: 300px;
-      height: 200px;
-      border-radius: 12px;
-      object-fit: cover;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-    }
-    
-    .carousel-track img:hover {
-      transform: scale(1.05);
-    }
-    
-    @keyframes scroll-carousel {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
     
     .poetry-section {
       max-width: 800px;
@@ -153,107 +117,33 @@
     }
     
     .poem-entry {
-      background-color: rgba(255, 255, 255, 0.03);
-      padding: 0.7rem;
+      background-color: #fefefe;
       border-left: 3px solid #aa2a2a;
+      padding: 0.7rem;
       margin-bottom: 2rem;
       transition: transform 0.3s ease;
     }
-    
     .poem-entry:hover {
       transform: translateY(-4px);
     }
-    
     .poem-title {
       font-size: 1rem;
       font-weight: bold;
       margin-bottom: 0.5rem;
-      color: #f6f6f6;
+      color: #2c2c2c;
     }
-    
     .poem-text {
       line-height: 0.7;
-      color: #ddd;
+      color: #444;
       white-space: pre-wrap;
     }
-
-
-    /* New immersive About Me styling */
-    .about {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(6px);
-      padding: 1.5rem;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      align-items: center;
-      animation: fadeIn 1s ease-in;
-    }
-    .about-text {
-      flex: 1;
-    }
-    .about-photo {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background-image: url('WhatsApp Image 2025-07-25 at 07.36.34.jpeg');
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    }
-    .typing-line {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #7c1c1c;
-      margin-bottom: 1rem;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid #7c1c1c;
-      width: 0;
-      animation: typing 2s steps(22, end)
-    forwards;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 14ch }
-    }
-
-
-    @keyframes fadeIn {
-      from { opacity: 0 }
-      to { opacity: 1 }
-    }
-
-    .about-text p {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: slideUp 0.8s ease forwards;
-    }
-
-    .about-text p:nth-child(2) { animation-delay: 0.4s; }
-    .about-text p:nth-child(3) { animation-delay: 0.8s; }
-
-    @keyframes slideUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
+       
     /* DARK MODE STYLES */
     body.dark-mode {
       background-color: #1e1e1e;
       color: #e0e0e0;
     }
-    body.dark-mode .notes-entry {
-      background: #2c2c2c;
-      border-color: #555;
-    }
-    body.dark-mode .about {
-      background: rgba(40, 40, 40, 0.7);
-    }
+
     body.dark-mode h2 {
       color: #f4cccc;
     }
@@ -261,9 +151,7 @@
       color: #f4cccc;
       border-color: #f4cccc;
     }
-    body.dark-mode .notes-entry time {
-      color: #f4cccc;
-    }
+
     body.dark-mode .socials svg {
       fill: #e0e0e0;
     }
@@ -271,32 +159,33 @@
       fill: #bbbbbb;
     }
 
-    .about-text a {
-      color: #7c1c1c;
-      text-decoration: underline;
+    body.dark-mode .poem-entry {
+      background-color: #2c2c2c;
+      border-left: 3px solid #555;
     }
-    .about-text a:hover {
-      color: #a33b3b;
+    body.dark-mode .poem-title {
+      color: #f6f6f6;
     }
-    body.dark-mode .about-text a {
-      color: #f4cccc;
+    body.dark-mode .poem-text {
+      color: #ddd;
     }
-    body.dark-mode .about-text a:hover {
-      color: #ffdddd;
-    }
-
   </style>
+  
   <link rel="icon" type="image/svg+xml" href="svgviewer-output (3).svg">
 </head>
+  
 <body>
+  
   <audio id="bg-music" autoplay loop>
     <source src="background-music.mp3" type="audio/mpeg">
   </audio>
 
   <canvas id="bg-network"></canvas>
+  
   <header>
     <h1>Amal<span>verse</span></h1>
   </header>
+  
   <nav>
     <a href="index.html">Home</a>
     <a href="reflections.html">Reflections</a>
@@ -307,6 +196,7 @@
   </nav>
 
   <main>
+   
     <section class="poetry-section">
       <h2 class="section-title">Originals</h2>
       <p class="section-subtitle">Fragments of thought, form, and feeling — my own poems.</p>
@@ -348,6 +238,7 @@
 </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
   <script>
     function isDarkMode() {
       return document.body.classList.contains('dark-mode');

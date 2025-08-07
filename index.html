@@ -128,35 +128,6 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    
-    .notes-entry {
-      background: #fff;
-      border: 1px solid #e4caca;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      transition: box-shadow 0.3s;
-    }
-    .notes-entry:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .notes-entry time {
-      font-size: 0.9rem;
-      color: #7c1c1c;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    .notes-entry a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .notes-entry p {
-      margin: 0;
-      font-style: italic;
-    }
-    .notes-entry a:hover p {
-      text-decoration: underline;
-    }
 
     /* New immersive About Me styling */
     .about {
@@ -363,7 +334,7 @@
     <a href="index.html">Home</a>
     <a href="#reflections">Reflections</a>
     <a href="#perspectives">Perspectives</a>
-    <a href="#poetry-section">Poetry</a>
+    <a href="#poetry">Poetry</a>
     <button id="theme-toggle" style="margin-left: auto; background: none; border: 1px solid white; color: white; padding: 0.2rem 0.5rem; border-radius: 8px; cursor: pointer;">🌙</button>
     <button id="music-toggle" style="background: none; border: 1px solid white; color: white; padding: 0.2rem 0.5rem; font-size: 0.8rem; border-radius: 6px; cursor: pointer;">🔊</button>
   </nav>
@@ -400,7 +371,7 @@
       <div class="about-photo"></div>
     </section>
     
-    <section class="poetry-section">
+    <section id="poetry" class="poetry-section">
       <h2 class="section-title">Originals</h2>
       <p class="section-subtitle">Fragments of thought, form, and feeling — my own poems.</p>
     

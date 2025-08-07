@@ -265,6 +265,88 @@
       color: #ffdddd;
     }
 
+    .poetry-section {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      font-family: 'Georgia', serif;
+      border-bottom: 2px solid #7c1c1c;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      color: #7c1c1c;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: #666;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+       
+
+    .poem-entry {
+      background-color: #fefefe;
+      border-left: 3px solid #7c1c1c;
+      padding: 0.7rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease;
+    }
+    .poem-entry:hover {
+      transform: translateY(-4px);
+    }
+    .poem-title {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #2c2c2c;
+    }
+    .poem-text {
+      line-height: 0.7;
+      color: #444;
+      white-space: pre-wrap;
+    }
+       
+    /* DARK MODE STYLES */
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode h2 {
+      color: #f4cccc;
+    }
+    body.dark-mode .typing-line {
+      color: #f4cccc;
+      border-color: #f4cccc;
+    }
+
+    body.dark-mode .socials svg {
+      fill: #e0e0e0;
+    }
+    body.dark-mode .socials a:hover svg {
+      fill: #bbbbbb;
+    }
+
+    body.dark-mode .poem-entry {
+      background-color: #2c2c2c;
+      border-left: 3px solid ##aa2a2a;
+    }
+    body.dark-mode .poem-title {
+      color: #f6f6f6;
+    }
+    body.dark-mode .poem-text {
+      color: #ddd;
+    }
+    body.dark-mode .section-title {
+      color: #f4cccc;
+    }
+    body.dark-mode .section-subtitle {
+      color: #bbb;
+    }
+
   </style>
   <link rel="icon" type="image/svg+xml" href="svgviewer-output (3).svg">
 </head>
@@ -279,13 +361,14 @@
   </header>
   <nav>
     <a href="index.html">Home</a>
-    <a href="reflections.html">Reflections</a>
-    <a href="perspectives.html">Perspectives</a>
-    <a href="poetry">Poetry</a>
+    <a href="#reflections">Reflections</a>
+    <a href="#perspectives">Perspectives</a>
+    <a href="#poetry">Poetry</a>
     <button id="theme-toggle" style="margin-left: auto; background: none; border: 1px solid white; color: white; padding: 0.2rem 0.5rem; border-radius: 8px; cursor: pointer;">🌙</button>
     <button id="music-toggle" style="background: none; border: 1px solid white; color: white; padding: 0.2rem 0.5rem; font-size: 0.8rem; border-radius: 6px; cursor: pointer;">🔊</button>
   </nav>
   <div class="container">
+
     <div class="carousel-container" data-aos="fade-up">
       <div class="carousel">
          <div class="carousel-track">
@@ -316,6 +399,31 @@
       </div>
       <div class="about-photo"></div>
     </section>
+    
+    <section class="poetry-section">
+      <h2 class="section-title">Originals</h2>
+      <p class="section-subtitle">Fragments of thought, form, and feeling — my own poems.</p>
+    
+      <div class="poem-entry">
+        <h3 class="poem-title">Title of Poem</h3>
+        <p class="poem-text">[Excerpt or full poem text here]</p>
+      </div>
+  
+      <!-- Repeat for each poem -->
+    </section>
+    
+    <section class="poetry-section">
+      <h2 class="section-title">Marginalia</h2>
+      <p class="section-subtitle">Notes, insights, and intellectual meanderings on poems I've read.</p>
+    
+      <div class="poem-entry">
+        <h3 class="poem-title">Poem / Poet Name</h3>
+        <p class="poem-text">[Your critical response or reflection goes here]</p>
+      </div>
+    
+      <!-- Repeat for each marginalia -->
+    </section>
+
   </div>
 
   <footer>

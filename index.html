@@ -430,9 +430,10 @@
       <p class="section-subtitle">Pieces I’ve underlined, highlighted, or scribbled beside — curated fragments from others.</p>
     
       <div class="poem-entry">
-        <h3 class="poem-title">Author or Source</h3>
-        <p class="poem-text">[Quoted text here]</p>
+        <h3 class="poem-title">Unreal</h3>
+        <p class="poem-text">I walked 20,202 steps into a dream... etc.</p>
       </div>
+
     
       <!-- Repeat for each marginalia entry -->
     </section>
@@ -576,6 +577,17 @@
         music.pause();
         musicBtn.textContent = '🔇';
       }
+    });
+
+    document.querySelectorAll('.poem-entry').forEach(entry => {
+      const title = entry.querySelector('.poem-title');
+      const text = entry.querySelector('.poem-text');
+      text.style.display = 'none'; // Hide text initially
+    
+      title.style.cursor = 'pointer';
+      title.addEventListener('click', () => {
+        text.style.display = (text.style.display === 'none') ? 'block' : 'none';
+      });
     });
 
     
